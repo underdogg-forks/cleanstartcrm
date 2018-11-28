@@ -1,7 +1,9 @@
 require('jquery');
 require('popper.js');
-require('./bootstrap');
+//require('popper');
+//require('./bootstrap');
 require('pace');
 require('perfect-scrollbar');
 require('@coreui/coreui');
 require('chart.js');
+//require('chart');
