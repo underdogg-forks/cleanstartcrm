@@ -12,7 +12,7 @@ class LaratrustSeeder extends Seeder
      */
     public function run()
     {
-        $this->command->info('Truncating User, Role and Permission tables');
+        // $this->command->info('Truncating Staff, Role and Permission tables');
         $this->truncateLaratrustTables();
 
         $config = config('laratrust_seeder.role_structure');
@@ -51,26 +51,29 @@ class LaratrustSeeder extends Seeder
             // Attach all permissions to the role
             $role->permissions()->sync($permissions);
 
-            $this->command->info("Creating '{$key}' user");
+            $this->command->info("Creating '{$key}' staff");
 
             // Create default user for each role
-            $user = \App\User::create([
-                'name' => ucwords(str_replace('_', ' ', $key)),
-                'email' => $key.'@app.com',
-                'password' => bcrypt('password')
-            ]);
-
-            $user->attachRole($role);
+            for($x=1;$x<=10;$x++)
+            {
+	            $user = \App\User::create([
+	                'name' => ucwords(str_replace('_', ' ', $key)),
+                    'email' => $key.$x.'@app.com',
+	                'password' => bcrypt('password')
+	            ]);
+	            $user->attachRole($role);
+	            unset($user);
+            }
         }
 
-        // Creating user with permissions
+        // Creating staff with permissions
         if (!empty($userPermission)) {
 
             foreach ($userPermission as $key => $modules) {
 
                 foreach ($modules as $module => $value) {
 
-                    // Create default user for each permission set
+                    // Create default staff for each permission set
                     $user = \App\User::create([
                         'name' => ucwords(str_replace('_', ' ', $key)),
                         'email' => $key.'@app.com',
@@ -93,14 +96,14 @@ class LaratrustSeeder extends Seeder
                     }
                 }
 
-                // Attach all permissions to the user
+                // Attach all permissions to the staffmember
                 $user->permissions()->sync($permissions);
             }
         }
     }
 
     /**
-     * Truncates all the laratrust tables and the users table
+     * Truncates all the laratrust tables and the staff table
      *
      * @return    void
      */
