@@ -37682,14 +37682,18 @@ module.exports = __webpack_require__(225);
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(21);
-__webpack_require__(161);
-//require('popper');
+
+__webpack_require__(161); //require('popper');
 //require('./bootstrap');
+
+
 __webpack_require__(162);
+
 __webpack_require__(28);
+
 __webpack_require__(180);
-__webpack_require__(181);
-//require('chart');
+
+__webpack_require__(181); //require('chart');
 
 /***/ }),
 /* 161 */
